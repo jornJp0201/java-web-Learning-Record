@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In to App</title>
+    <style>
+        /* 1. 画面全体の基本設定（index.htmlと統一した洗練されたグラデーション背景） */
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background: linear-gradient(135deg, #f0fdf4 0%, #e6fffa 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 2. フォームを囲む白いカード */
+        .center-card {
+            background: #ffffff;
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.08);
+            width: 90%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+
+        /* 3. タイトルエリア */
+        .TOP {
+            color: #10b981;
+            font-weight: 800;
+            font-size: 24px;
+            display: block;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            letter-spacing: -0.025em;
+        }
+
+        .text-black-center {
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* 4. エラーメッセージの警告ボックス */
+        .error-container {
+            background-color: #fef2f2;
+            border: 1px solid #fca5a5;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .text-red-center {
+            color: #dc2626;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* 5. 入力フォームのスタイル */
+        .form-group {
+            margin-bottom: 1.25rem;
+            text-align: left;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 0.5rem;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background-color: #f8fafc;
+            color: #334155;
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #10b981;
+            background-color: #ffffff;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+        }
+
+        /* 6. 送信ボタン */
+        .btn-submit {
+            width: 100%;
+            padding: 0.85rem;
+            background-color: #10b981;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+        }
+
+        .btn-submit:hover {
+            background-color: #059669;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.2);
+        }
+
+        /* ✨ 7. 追加：トップ（Index）に戻るボタンのスタイル */
+        .btn-back-container {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .btn-back {
+            display: inline-block;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-back:hover {
+            color: #10b981;
+            background-color: #f0fdf4; /* ほんのり薄緑の背景でフィードバック */
+        }
+
+        /* 8. 制作中ステータス */
+        .status-text {
+            color: #94a3b8;
+            font-size: 13px;
+            margin-top: 2rem;
+            text-align: center;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="center-card">
+        <span class="TOP">Hello, sign in to App</span>
+        <span class="text-black-center">Please type your credentials!</span>
+     
+        <div class="error-container" th:if="${miss != null}">
+            <span class="text-red-center" th:text="${miss}">エラーメッセージ</span>
+        </div>
+     
+        <form th:action="@{/users/login_chack}" method="post">
+            
+            <div class="form-group">
+                <label class="input-label">User ID:</label>
+                <input type="text" name="userid" placeholder="Enter your id" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="input-label">Password:</label>
+                <input type="password" name="pas" placeholder="Enter your pas" required>
+            </div>
+            
+            <button type="submit" class="btn-submit">Sign In</button>
+        </form>
+
+        <div class="btn-back-container">
+            <a th:href="@{/}" class="btn-back">→ Back to Top Page</a>
+        </div>

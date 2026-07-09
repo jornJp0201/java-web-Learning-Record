@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting App - Welcome</title>
+    
+    <style>
+        /* 1. 全体のレイアウト調整（美しいグラデーション背景と中央配置） */
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background: linear-gradient(135deg, #f0fdf4 0%, #e6fffa 100%); /* 爽やかで洗練された緑系のグラデーション */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 2. メインコンテンツを囲む白いカード */
+        .center-card {
+            background: #ffffff;
+            padding: 3rem 2rem;
+            border-radius: 16px; /* 角丸を滑らかにしてモダンに */
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.08); /* 柔らかく高級感のある影 */
+            width: 90%;
+            max-width: 420px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* 3. タイトルエリア */
+        .brand-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .brand-title {
+            color: #10b981; /* メインカラーのクリーンなグリーン */
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 0 0 0.5rem 0;
+            letter-spacing: -0.025em;
+        }
+
+        .brand-subtitle {
+            color: #64748b; /* 落ち着いたグレー */
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* 4. ボタンを並べるコンテナ */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem; /* ボタン同士の間隔 */
+        }
+
+        /* 5. リンクボタンの共通スタイル（モダンなボタンへ変身） */
+        .go-sign-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            color: #334155;
+            text-decoration: none;
+            padding: 0.85rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            transition: all 0.25s ease; /* アニメーションを滑らかに */
+            cursor: pointer;
+        }
+
+        /* 6. ボタンのホバーエフェクト（マウスを乗せた時の動き） */
+        .go-sign-btn:hover {
+            background-color: #10b981;
+            color: #ffffff;
+            border-color: #10b981;
+            transform: translateY(-2px); /* ぽこっと上に少し浮き出る */
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+        }
+
+        /* 矢印アイコンのスペース調整 */
+        .go-sign-btn span {
+            margin-right: 8px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="center-card">
+        <div class="brand-header">
+            <h1 class="brand-title">Greeting App</h1>
+            <p class="brand-subtitle">Welcome to learning record management</p>
+        </div>
+
+        <div class="button-group">
+            <a th:href="@{/login}" class="go-sign-btn">
+                <span>→</span> Go Sign In Page
+            </a>
+            
+            <a th:href="@{/hello_test}" class="go-sign-btn">
+                <span>→</span> Go Create Account Page
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Learning Text</title>
+    <style>
+        /* 1. 画面全体の基本設定（アプリ全体で統一したグラデーション背景と中央配置） */
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background: linear-gradient(135deg, #f0fdf4 0%, #e6fffa 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 2. 入力フォーム全体を囲む白いカード */
+        .center-card {
+            background: #ffffff;
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.08);
+            width: 90%;
+            max-width: 500px; /* テキストエリアが広めになるよう少し大きめに調整 */
+            box-sizing: border-box;
+        }
+
+        /* 3. ヘッダーエリア */
+        .Top_style {
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .size_center {
+            font-size: 26px;
+            font-weight: 800;
+            color: #10b981; /* アプリ共通のクリーンなグリーン */
+            margin: 0;
+            letter-spacing: -0.025em;
+        }
+
+        .sizs_center_min {
+            font-size: 14px;
+            font-weight: 500;
+            color: #64748b;
+            text-align: center;
+            margin: 0 0 2rem 0;
+        }
+
+        /* 4. 各入力セクションのタイトル（Title や Text の見出し） */
+        .sizs_left_Title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #475569;
+            margin: 0 0 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* 見出しの先頭に緑のスタイリッシュな目印を追加 */
+        .sizs_left_Title::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 14px;
+            background-color: #10b981;
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        /* 5. タイトル入力欄とテキストエリアのスタイル（共通化して美しく） */
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background-color: #f8fafc;
+            color: #334155;
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        /* 元の構成のresize:noneなどの設定を維持 */
+        .form-textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        /* 入力中（フォーカス時）の美しいエフェクト */
+        .form-input:focus,
+        .form-textarea:focus {
+            border-color: #10b981;
+            background-color: #ffffff;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+        }
+
+        /* 6. 送信ボタン */
+        .btn-submit {
+            width: 100%;
+            padding: 0.85rem;
+            background-color: #10b981;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+        }
+
+        .btn-submit:hover {
+            background-color: #059669;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.2);
+        }
+
+        /* 7. ダッシュボード（Main）へ戻るリンク */
+        .btn-back-container {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .btn-back {
+            display: inline-block;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-back:hover {
+            color: #10b981;
+            background-color: #f0fdf4;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="center-card">
+        <div class="Top_style">
+            <h1 class="size_center">Add text Page</h1>
+        </div>
+        <h2 class="sizs_center_min">Please enter text.</h2>
+        
+        <form th:action="@{/taxt/add}" method="post">
+            
+            <div class="form-group">
+                <h3 class="sizs_left_Title">Title</h3>
+                <input type="text" class="form-input" name="taxt" placeholder="Enter topic title" required>
+            </div>
+            
+            <div class="form-group">
+                <h3 class="sizs_left_Title">Text Description</h3>
+                <textarea class="form-textarea" name="sentence" placeholder="Write what you have learned here..." required></textarea>
+            </div>
+            
+            <button type="submit" class="btn-submit">Submit Record</button>
+        </form>
+
+        <div class="btn-back-container">
+            <a th:href="@{/taxt/main}" class="btn-back">← Back to Dashboard</a>
+        </div>
+    </div>
+
+</body>
+</html>

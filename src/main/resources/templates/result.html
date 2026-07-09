@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an Account</title>
+    <style>
+        /* 1. 画面全体の基本設定（アプリ全体で統一した美しいグラデーション背景） */
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background: linear-gradient(135deg, #f0fdf4 0%, #e6fffa 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 2. フォームを囲む白いカード */
+        .center-card {
+            background: #ffffff;
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.08);
+            width: 90%;
+            max-width: 420px;
+            box-sizing: border-box;
+        }
+
+        /* 3. タイトルエリア */
+        .size {
+            color: #10b981; /* メインのクリーンなグリーン */
+            font-size: 28px;
+            font-weight: 800;
+            margin: 0 0 0.25rem 0;
+            text-align: center;
+            letter-spacing: -0.025em;
+        }
+
+        .size_min {
+            color: #64748b; /* 落ち着いたグレー */
+            font-size: 15px;
+            font-weight: 500;
+            margin: 0 0 2rem 0;
+            text-align: center;
+        }
+
+        /* 4. 入力フォームのレイアウト */
+        .form-group {
+            margin-bottom: 1.25rem;
+            text-align: left; /* ラベルは左寄せ */
+        }
+
+        .input-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 元の構成にあったclass="size_input"の入力欄スタイル */
+        .size_input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background-color: #f8fafc;
+            color: #334155;
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+        }
+
+        /* 入力欄をクリックした時（フォーカス時）のエフェクト */
+        .size_input:focus {
+            border-color: #10b981;
+            background-color: #ffffff;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+        }
+
+        /* 5. 送信ボタン */
+        .btn-submit {
+            width: 100%;
+            padding: 0.85rem;
+            background-color: #10b981;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+        }
+
+        /* ボタンのホバーエフェクト */
+        .btn-submit:hover {
+            background-color: #059669;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.2);
+        }
+
+        /* 6. トップ（Index）に戻るリンクのスタイル */
+        .btn-back-container {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .btn-back {
+            display: inline-block;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-back:hover {
+            color: #10b981;
+            background-color: #f0fdf4;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="center-card">
+        <p class="size">Hello !</p>
+        <p class="size_min">Create an Account</p>
+        
+        <form th:action="@{/users/register}" method="post">
+            
+            <div class="form-group">
+                <label class="input-label">User Name:</label>
+                <input type="text" class="size_input" name="username" placeholder="Enter user name" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="input-label">Password:</label>
+                <input type="password" class="size_input" name="password" placeholder="Enter password" required>
+            </div>
+            
+            <button type="submit" class="btn-submit">Create</button>
+        </form>
+
+        <div class="btn-back-container">
+            <a th:href="@{/}" class="btn-back">← Back to Top Page</a>
+        </div>
+    </div>
+
+</body>
+</html>
