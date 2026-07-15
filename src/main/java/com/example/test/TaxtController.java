@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpSession;
 
-//import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 @RequestMapping("/taxt")
@@ -33,11 +33,11 @@ public class TaxtController{
      HttpSession session,
      Model model){
         UserEntity username_maked = (UserEntity) session.getAttribute("loginUser");
-        // ✨ 3. 万が一、ログインしていない、またはセッションが切れていた場合は安全にログイン画面へ突き返す（ガード処理）
+     
         if (username_maked == null) {
             return "redirect:/login";
         }
-        // ✨ 4. 画面から届いたテキストデータに、いまログインしているユーザーの情報を合体させます！
+       
         taxt.set_username(username_maked);
         
         if(TaxtService.countTaxt()>=0){
@@ -72,18 +72,18 @@ public class TaxtController{
 }
 
 
-@Service // 新しく作るクラスにこれを付ける
+@Service 
 class TaxtService {
 
-    // 先ほど作ったRepositoryをここに用意する
+    
     private final TaxtRepository TaxtRepository;
 
-   // @Autowired
+   
     public TaxtService(TaxtRepository taxtRepository) {
         this.TaxtRepository = taxtRepository;
     }
 
-    // ★ここにRepositoryを呼び出す処理（ビジネスロジック）を書く！
+ 
     public void saveTaxt(TaxtEntity taxt) {
         // Repositoryのメソッドを呼び出して、DBに保存（登録）させる
         TaxtRepository.save(taxt); 

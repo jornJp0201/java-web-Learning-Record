@@ -8,11 +8,11 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "taxt_table") // データベース内のテーブル名を「users」に設定
+@Table(name = "taxt_table") 
 
 public class TaxtEntity {
 
-    @Id // 主キー（プライマリキー：データの重複を許さないキー、今回はユーザー名）
+    @Id 
     @Column(name = "taxt", nullable = false, length = 50)
     private String taxt;
 
@@ -26,11 +26,11 @@ public class TaxtEntity {
 
 
 
-    // デフォルトコンストラクタ（JPAの仕様上、必須となります）
+    
     public TaxtEntity() {
     }
 
-    // 簡単にデータを入れられるようにするためのコンストラクタ
+   
     public TaxtEntity(String taxt, String sentence,UserEntity username) {
         this.taxt = taxt;
         this.sentence = sentence;

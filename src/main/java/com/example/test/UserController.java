@@ -1,7 +1,7 @@
 package com.example.test;
 
 
-//import org.springframework.data.jpa.repository.query.EqlParser;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -21,7 +21,7 @@ public class UserController{
 
   private final UserService userService;
 
-   // @Autowired
+  
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -72,32 +72,32 @@ public class UserController{
 }
 
 
-@Service // 新しく作るクラスにこれを付ける
+@Service 
 class UserService {
 
-    // 先ほど作ったRepositoryをここに用意する
+    
     private final UserRepository userRepository;
 
-   // @Autowired
+  
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    // ★ここにRepositoryを呼び出す処理（ビジネスロジック）を書く！
+
     public String saveUser(UserEntity newuser) {
-        // Repositoryのメソッドを呼び出して、DBに保存（登録）させる
+        
         UserEntity savedUser = userRepository.save(newuser);
         return savedUser.getUsername();
     }
 
     public String getUserByPas(String id) {
-        // findById() を使うと、結果が「Optional」という箱に包まれて返ってきます
+       
         UserEntity user = userRepository.findById(id).orElse(null);
         return user.getPassword();
     }
 
     public String getUserById(String id) {
-        // findById() を使うと、結果が「Optional」という箱に包まれて返ってきます
+       
         UserEntity user = userRepository.findById(id).orElse(null);
         return user.getUsername();
     }
@@ -108,8 +108,5 @@ class UserService {
 
    
 
-    /*public List<UserEntity> getAllUsers() {
-        // ここで、JpaRepositoryが最初から持っている「findAll()」を呼び出す！
-        return userRepository.findAll(); 
-    }*/
+   
 }
